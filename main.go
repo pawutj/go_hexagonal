@@ -15,4 +15,6 @@ func main() {
 
 	customerRepository := repository.NewCustomerRepositoryDB(db)
 
+	customers, err := customerRepository.GetAll()
+
 }

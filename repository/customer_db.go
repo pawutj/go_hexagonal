@@ -13,9 +13,27 @@ func NewCustomerRepositoryDB(db *sqlx.DB) customerRepositoryDB {
 }
 
 func (r customerRepositoryDB) GetAll() ([]Customer, error) {
-	return nil, nil
+
+	customers := []Customer{}
+	query := "select * from customers"
+
+	err := r.db.Select(&customers, query)
+	if err != nil {
+		return nil, err
+	}
+	return customers, nil
+
 }
 
-func (r customerRepositoryDB) GetById(int) (*Customer, error) {
-	return nil, nil
+func (r customerRepositoryDB) GetById(id int) (*Customer, error) {
+
+	customer := Customer{}
+	err := r.db.Get(&customer, "select * from customers where id =?", id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &customer, nil
+
 }
