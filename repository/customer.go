@@ -6,7 +6,7 @@ type Customer struct {
 }
 
 type CustomerRepository interface {
-	GetAll([]Customer, error)
+	GetAll() ([]Customer, error)
 	// * for return nil
-	GetById(int) (*Customer, error)
+	GetById(int id) (*Customer, error)
 }
